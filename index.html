@@ -15,38 +15,40 @@
   </head>
   <body>
     <div class="container">
-      <div class="weather-widget">
-        <div class="row p-2" id="search-field">
-          <input
-            type="text"
-            class="form-control search-field"
-            id="cityInput"
-            aria-describedby="enterCity"
-            placeholder="City"
-          />
-          <button
-            type="submit"
-            class="btn btn-secondary me-2"
-            id="search-button"
-          >
-            Search
-          </button>
-        </div>
-        <div class="row p-2">
-          <div class="col-3 text-start">
-            <ul>
-              <li><strong>City</strong></li>
-              <li>Country</li>
-              <li>Time</li>
-              <li>Day of the week</li>
-              <li>Date</li>
-            </ul>
+      <div class="wrapper">
+        <div class="weather-widget">
+          <div class="row p-2 d-flex" id="search-field">
+            <input
+              type="text"
+              class="form-control search-field"
+              id="cityInput"
+              aria-describedby="enterCity"
+              placeholder="City"
+            />
+            <button
+              type="submit"
+              class="btn btn-secondary me-2"
+              id="search-button"
+            >
+              Search
+            </button>
           </div>
-          <div class="col icon">
-            <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" />
+          <div class="row p-2">
+            <div class="col-3 text-start">
+              <ul>
+                <li><strong>City</strong></li>
+                <li>Country</li>
+                <li>Time</li>
+                <li>Day of the week</li>
+                <li>Date</li>
+              </ul>
+            </div>
+            <div class="col d-flex icon">
+              <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" />
+            </div>
+            <div class="col-2" id="grades">15</div>
+            <div class="col-2 text-start switcher"">C°|F°
           </div>
-          <div class="col-2" id="grades">15</div>
-          <div class="col-2 text-start switcher"">C°|F°</div>
           <div class="col-3">
             <ul>
               <li>Humidity</li>
@@ -56,19 +58,21 @@
               <li>Skies</li>
             </ul>
           </div>
+          <div class="row p-2">
+            <div class="col">forecast</div>
+            <div class="col">forecast</div>
+            <div class="col">forecast</div>
+            <div class="col">forecast</div>
+            <div class="col">forecast</div>
+          </div>
         </div>
-        <!-- FORECAST ROW
-        <div class="row p-2">
-          <div class="col">forecast</div>
-          <div class="col">forecast</div>
-          <div class="col">forecast</div>
-          <div class="col">forecast</div>
-          <div class="col">forecast</div>
-        </div>
-    -->
-   
       </div>
-       <small><a href="https://github.com/LazzyBird/vanlla-weather-webapp">Open-source code</a> by Lazzy Bird</small>
+      <small
+        ><a href="https://github.com/LazzyBird/vanlla-weather-webapp"
+          >Open-source code</a
+        >
+        by Lazzy Bird</small
+      >
     </div>
     <script src="src/script.js"></script>
   </body>

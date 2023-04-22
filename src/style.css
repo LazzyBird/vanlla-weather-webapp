@@ -1,14 +1,16 @@
-.weather-widget {
+.wrapper {
   display: block;
   font-family: "Roboto", sans-serif;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
   padding-top: 20px;
   margin: 40px auto;
   max-width: 550px;
-  margin-bottom: 5px;
-  line-height: 1;
+  min-width: 400px;
+  line-height: 1.2;
+}
+.weather-widget {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
 }
 .search-field {
   display: inline-block;
@@ -39,6 +41,6 @@ ul {
 }
 small {
   display: block;
-  margin: 0 auto;
   font-size: 10px;
+  line-height: 1.8;
 }
