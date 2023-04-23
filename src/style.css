@@ -3,7 +3,7 @@
   font-family: "Roboto", sans-serif;
   padding-top: 20px;
   margin: 40px auto;
-  max-width: 550px;
+  max-width: 650px;
   min-width: 400px;
   line-height: 1.2;
 }
@@ -21,7 +21,7 @@
 #search-button {
   width: 80px;
 }
-#grades {
+#temperature {
   font-size: 65px;
   font-weight: strong;
 }
@@ -43,4 +43,8 @@ small {
   display: block;
   font-size: 10px;
   line-height: 1.8;
+}
+strong {
+  font-size: 14px;
+  font-weight: 600;
 }

@@ -12,12 +12,13 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="src/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
       <div class="wrapper">
         <div class="weather-widget">
-          <div class="row p-2 d-flex" id="search-field">
+          <!-- <div class="row p-2 d-flex" id="search-field">
             <input
               type="text"
               class="form-control search-field"
@@ -32,39 +33,39 @@
             >
               Search
             </button>
-          </div>
+          </div>-->
           <div class="row p-2">
             <div class="col-3 text-start">
               <ul>
-                <li><strong>City</strong></li>
-                <li>Country</li>
-                <li>Time</li>
-                <li>Day of the week</li>
-                <li>Date</li>
+               <strong><li id="city"></li></strong> 
+                <i><li id="country"></li></i>
+                <li>15:00</li>
+                <li>Friday</li>
+                <li>21 of April 2023</li>
               </ul>
             </div>
-            <div class="col d-flex icon">
+            <div class="col  icon">
               <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" />
             </div>
-            <div class="col-2" id="grades">15</div>
-            <div class="col-2 text-start switcher"">C°|F°
+            <div class="col-2" id="temperature"></div>
+            <div class="col-2 text-start switcher">C°|F°
           </div>
-          <div class="col-3">
+          <div class="col-3 d-flex">
             <ul>
-              <li>Humidity</li>
-              <li>Windspeed</li>
-              <li>Precipitation</li>
-              <li>Feels like</li>
-              <li>Skies</li>
+              <li>Humidity:  <b><span id="humidity"></span>%</b></li>
+              <li>Pressure:  <b><span id="pressure"></span>hPa</b></li>
+              <li>Wind:  <b><span id="windspeed"></span>km/h</b></li>
+              <li>Feels like:  <b><span id="feelsLike"></span>°</b></li>
+              <li>Weather: <i> <b><span id="weather"></span></b></i></li>
             </ul>
           </div>
-          <div class="row p-2">
+          <!-- <div class="row p-2">
             <div class="col">forecast</div>
             <div class="col">forecast</div>
             <div class="col">forecast</div>
             <div class="col">forecast</div>
             <div class="col">forecast</div>
-          </div>
+          </div> -->
         </div>
       </div>
       <small
