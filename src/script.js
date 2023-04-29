@@ -23,6 +23,10 @@ function formatDate(timestamp) {
 }
 let apiKey = "4085d4e1d22f7753a9278110dff3ae74";
 let cityName = "Odesa"; //default city
+let units = "metric"; //default units
+//units switcher
+const metricSwitch = document.getElementById("metric-switch");
+const imperialSwitch = document.getElementById("imperial-switch");
 
 //displays all needed parameters back in html
 function displayTemperature(response) {
@@ -50,6 +54,14 @@ function displayTemperature(response) {
   let iconUri = `https://openweathermap.org/img/wn/${iconName}.png`;
   weatherIconElement.src = iconUri;
   cityName = response.data.name;
+  if (units === "metric") {
+    windspeedElement.innerHTML = Math.round(response.data.wind.speed);
+    speedUnit.innerHTML = "km/h";
+  } else if (units === "imperial") {
+    let mph = response.data.wind.speed * 0.269;
+    windspeedElement.innerHTML = Math.round(mph);
+    speedUnit.innerHTML = "mph";
+  }
 }
 
 function inputCity(event) {
@@ -66,10 +78,10 @@ function inputCity(event) {
   city.innerHTML = cityName;
   cityInput.value = "";
 
-  let apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+  let apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
   axios.get(apiUri).then(displayTemperature);
 }
-let apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+let apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
 axios.get(apiUri).then(displayTemperature);
 
 document.getElementById("search-button").addEventListener("click", inputCity);
@@ -81,3 +93,21 @@ document
       inputCity();
     }
   });
+
+metricSwitch.addEventListener("click", () => {
+  // Set the units to metric and update the API request
+  units = "metric";
+  updateWeather(units);
+});
+
+imperialSwitch.addEventListener("click", () => {
+  // Set the units to imperial and update the API request
+  units = "imperial";
+  updateWeather(units);
+});
+
+// Update the weather data using the new units
+function updateWeather(units) {
+  const apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUri).then(displayTemperature);
+}

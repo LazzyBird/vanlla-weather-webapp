@@ -50,13 +50,16 @@
               <img id="weatherIcon" src="" />
             </div>
             <div class="col-2" id="temperature"></div>
-            <div class="col-2 text-start switcher">C°|F°
+            <div class="col-2 text-start switcher">
+              <span class="unit-switch" id="metric-switch"><a href="#">C°</a></span>
+               | 
+  <span class="unit-switch" id="imperial-switch"><a href="#">F°</a></span>
           </div>
           <div class="col-3 d-flex">
             <ul>
               <li>Humidity:  <b><span id="humidity"></span>%</b></li>
               <li>Pressure:  <b><span id="pressure"></span>hPa</b></li>
-              <li>Wind:  <b><span id="windspeed"></span>km/h</b></li>
+              <li>Wind:  <b><span id="windspeed"></span><span id="speedUnit">km/h</span></b></li>
               <li>Feels like:  <b><span id="feelsLike"></span>°</b></li>
             </ul>
           </div>
