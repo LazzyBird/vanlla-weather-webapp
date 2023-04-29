@@ -31,6 +31,7 @@ function displayTemperature(response) {
   let weatherElement = document.querySelector("#weather");
   let pressureElement = document.querySelector("#pressure");
   let lastUpdate = document.querySelector("#updated");
+  let weatherIconElement = document.querySelector("#weatherIcon");
 
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   feelsElement.innerHTML = Math.round(response.data.main.feels_like);
@@ -41,7 +42,11 @@ function displayTemperature(response) {
   weatherElement.innerHTML = response.data.weather[0].description;
   pressureElement.innerHTML = response.data.main.pressure;
   lastUpdate.innerHTML = formatDate(response.data.dt * 1000);
+  iconName = response.data.weather[0].icon;
+  let iconUri = `https://openweathermap.org/img/wn/${iconName}.png`;
+  weatherIconElement.src = iconUri;
 }
+
 let apiKey = "4085d4e1d22f7753a9278110dff3ae74";
-let apiUri = `https://api.openweathermap.org/data/2.5/weather?q=Tokyo&appid=${apiKey}&units=metric`;
+let apiUri = `https://api.openweathermap.org/data/2.5/weather?q=Bucharest&appid=${apiKey}&units=metric`;
 axios.get(apiUri).then(displayTemperature);
