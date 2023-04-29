@@ -21,6 +21,10 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
+let apiKey = "4085d4e1d22f7753a9278110dff3ae74";
+let cityName = "Odesa"; //default city
+
+//displays all needed parameters back in html
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let feelsElement = document.querySelector("#feelsLike");
@@ -45,8 +49,35 @@ function displayTemperature(response) {
   iconName = response.data.weather[0].icon;
   let iconUri = `https://openweathermap.org/img/wn/${iconName}.png`;
   weatherIconElement.src = iconUri;
+  cityName = response.data.name;
 }
 
-let apiKey = "4085d4e1d22f7753a9278110dff3ae74";
-let apiUri = `https://api.openweathermap.org/data/2.5/weather?q=Bucharest&appid=${apiKey}&units=metric`;
+function inputCity(event) {
+  let city = document.querySelector("#city");
+  let cityInput = document.querySelector("#cityInput");
+  let cityNameInput = cityInput.value.trim();
+  if (cityNameInput === "") {
+    cityInput.placeholder = "Please enter a city";
+    cityInput.value = "";
+    return;
+  }
+
+  cityName = cityNameInput; // update the city name with the user input
+  city.innerHTML = cityName;
+  cityInput.value = "";
+
+  let apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+  axios.get(apiUri).then(displayTemperature);
+}
+let apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
 axios.get(apiUri).then(displayTemperature);
+
+document.getElementById("search-button").addEventListener("click", inputCity);
+document
+  .getElementById("cityInput")
+  .addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      inputCity();
+    }
+  });

@@ -13,9 +13,8 @@
   padding: 20px;
 }
 .search-field {
-  display: inline-block;
+  display: block;
   margin-right: 10px;
-  width: 360px;
   margin-left: 10px;
 }
 #search-button {
@@ -48,4 +47,3 @@ strong {
   font-size: 14px;
   font-weight: 600;
 }
-
