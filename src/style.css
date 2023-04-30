@@ -36,7 +36,8 @@ ul {
 }
 .icon,
 .switcher {
-  width: 64px;
+  display: block;
+  margin: 0 auto;
 }
 small {
   display: block;
