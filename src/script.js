@@ -56,9 +56,9 @@ function displayTemperature(response) {
   cityName = response.data.name;
   if (units === "metric") {
     windspeedElement.innerHTML = Math.round(response.data.wind.speed);
-    speedUnit.innerHTML = "km/h";
+    speedUnit.innerHTML = "m/s";
   } else if (units === "imperial") {
-    let mph = response.data.wind.speed * 0.277;
+    let mph = response.data.wind.speed;
     windspeedElement.innerHTML = Math.round(mph);
     speedUnit.innerHTML = "mph";
   }
