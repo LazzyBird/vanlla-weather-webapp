@@ -20,56 +20,75 @@
         <div class="weather-widget">
           <div class="row p-2 d-flex" id="search-field">
             <div class="col-8">
-            <input
-              type="search"
-              class="form-control search-field"
-              id="cityInput"
-              aria-describedby="enterCity"
-              placeholder="Enter city name.."
-            /></div>
+              <input
+                type="search"
+                class="form-control search-field"
+                id="cityInput"
+                aria-describedby="enterCity"
+                placeholder="Enter city name.."
+              />
+            </div>
             <div class="col-3">
-            <button
-              type="submit"
-              class="btn btn-success me-2"
-              id="search-button"
-            >
-              Search
-            </button>
+              <button
+                type="submit"
+                class="btn btn-success me-2"
+                id="search-button"
+              >
+                Search
+              </button>
             </div>
           </div>
           <div class="row p-2">
             <div class="col-3 text-start">
               <ul>
-               <li><strong><span id="city"></span> </strong><i><span id="country"></span></i></li>
-                <li><i> <b><span id="weather"></span></b></i></li>
+                <li>
+                  <strong><span id="city"></span> </strong
+                  ><i><span id="country"></span></i>
+                </li>
+                <li>
+                  <i>
+                    <b><span id="weather"></span></b
+                  ></i>
+                </li>
                 <li>Last update:</li>
                 <li><span id="updated"></span></li>
               </ul>
             </div>
             <div class="col-2 text-center my-auto">
-              <img id="weatherIcon" src="" alt="Weather condition"/>
+              <img id="weatherIcon" src="" alt="Weather condition" />
             </div>
             <div class="col-2" id="temperature"></div>
             <div class="col-2 text-start switcher">
-              <span class="unit-switch" id="metric-switch"><a href="#">C°</a></span>
-               | 
-  <span class="unit-switch" id="imperial-switch"><a href="#">F°</a></span>
+              <span class="unit-switch" id="metric-switch"
+                ><a href="#">C°</a></span
+              >
+              |
+              <span class="unit-switch" id="imperial-switch"
+                ><a href="#">F°</a></span
+              >
+            </div>
+            <div class="col-3 d-flex">
+              <ul>
+                <li>
+                  Humidity: <b><span id="humidity"></span>%</b>
+                </li>
+                <li>
+                  Pressure: <b><span id="pressure"></span>hPa</b>
+                </li>
+                <li>
+                  Wind:
+                  <b
+                    ><span id="windspeed"></span
+                    ><span id="speedUnit">km/h</span></b
+                  >
+                </li>
+                <li>
+                  Feels like: <b><span id="feelsLike"></span>°</b>
+                </li>
+              </ul>
+            </div>
+            <div class="row p-2" id="forecastRow">
           </div>
-          <div class="col-3 d-flex">
-            <ul>
-              <li>Humidity:  <b><span id="humidity"></span>%</b></li>
-              <li>Pressure:  <b><span id="pressure"></span>hPa</b></li>
-              <li>Wind:  <b><span id="windspeed"></span><span id="speedUnit">km/h</span></b></li>
-              <li>Feels like:  <b><span id="feelsLike"></span>°</b></li>
-            </ul>
-          </div>
-          <!-- <div class="row p-2">
-            <div class="col">forecast</div>
-            <div class="col">forecast</div>
-            <div class="col">forecast</div>
-            <div class="col">forecast</div>
-            <div class="col">forecast</div>
-          </div> -->
         </div>
       </div>
       <small

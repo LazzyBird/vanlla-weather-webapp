@@ -34,8 +34,12 @@ ul {
   padding-left: 0;
   margin: 0 auto;
 }
+p {
+  margin-bottom: 3px;
+}
 .icon,
-.switcher {
+.switcher,
+#forecastRow {
   display: block;
   margin: 0 auto;
 }
@@ -47,4 +51,10 @@ small {
 strong {
   font-size: 14px;
   font-weight: 600;
+}
+#forecastRow {
+  font-size: 10pt;
+}
+#minTemp {
+  opacity: 0.6;
 }

@@ -111,3 +111,27 @@ function updateWeather(units) {
   const apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
   axios.get(apiUri).then(displayTemperature);
 }
+
+function forecastPut() {
+  let forecast = document.querySelector("#forecastRow");
+  let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  weekDays.forEach(function (day) {
+    let forecastHtml = "";
+    forecastHtml =
+      forecastHtml +
+      ` <div class="col text-center" id="forecastCol">
+              <p>${day}</p>
+              <div>
+                <img
+                  id="weatherIconForecast"
+                  src="https://openweathermap.org/img/wn/04n.png"
+                  width="30px"
+                />
+              </div>
+               <p><span id="maxTemp">18</span>° <span id="minTemp">12</span>°</p>
+            </div>`;
+    forecast.innerHTML = forecastHtml;
+  });
+}
+
+forecastPut();
