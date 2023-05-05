@@ -111,4 +111,4 @@ function updateWeather(units) {
   const apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
   axios.get(apiUri).then(displayTemperature);
 }
-setInterval (displayTemperature, 10 000);
+setInterval (displayTemperature, 10000); //function displaytemp refresh data every 10s
