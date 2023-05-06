@@ -135,3 +135,4 @@ function forecastPut() {
 }
 
 forecastPut();
+setInterval(displayTemperature, 10000); //function displaytemp refresh data every 10s
