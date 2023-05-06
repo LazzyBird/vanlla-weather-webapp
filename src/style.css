@@ -54,7 +54,16 @@ strong {
 }
 #forecastRow {
   font-size: 10pt;
+  padding-top: 12px;
+  justify-content: space-between;
 }
 #minTemp {
   opacity: 0.6;
+}
+.forecastCol {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
