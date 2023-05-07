@@ -62,6 +62,7 @@ function displayTemperature(response) {
     windspeedElement.innerHTML = Math.round(mph);
     speedUnit.innerHTML = "mph";
   }
+  getCoordinates(response.data.coord);
 }
 
 function inputCity(event) {
@@ -113,7 +114,7 @@ function updateWeather(units) {
 }
 
 function forecastPut() {
-  let forecast = document.querySelector("#forecastRow");
+  let forecastElement = document.querySelector("#forecastRow");
   let forecastHtml = `<div class="row">`;
   let weekDays = ["Sun", "Mon", "Tue", "Sat"];
   weekDays.forEach(function (day) {
@@ -124,7 +125,7 @@ function forecastPut() {
               <div>
                 <img
                   class="weatherIconForecast"
-                  src="https://openweathermap.org/img/wn/04n.png"
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
                   width="30px"
                 />
               </div>
@@ -132,8 +133,16 @@ function forecastPut() {
             </div>`;
   });
   forecastHtml += `</div>`;
-  forecast.innerHTML = forecastHtml;
+  forecastElement.innerHTML = forecastHtml;
 }
-
+function getCoordinates(coordinates) {
+  console.log(coordinates);
+  let apiKey = "242c3086ae8a4o123efeca4t0ba430f7";
+  let apiUri = `https://api.shecodes.io/weather/v1/current?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}&units=${units}`;
+  console.log(apiUri);
+  axios.get(apiUri).then(forecastPut);
+}
 forecastPut();
+
 //setInterval(displayTemperature, 10000); //function displaytemp refresh data every 10s
+//https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}
