@@ -106,19 +106,21 @@ document
 metricSwitch.addEventListener("click", () => {
   // Set the units to metric and update the API request
   units = "metric";
-  updateWeather(units);
+  updateWeather(units, coordinates);
 });
 
 imperialSwitch.addEventListener("click", () => {
   // Set the units to imperial and update the API request
   units = "imperial";
-  updateWeather(units);
+  updateWeather(units, coordinates);
 });
 
 // Update the weather data using the new units
 function updateWeather(units) {
-  const apiUri = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=${units}`;
-  axios.get(apiUri).then(displayTemperature);
+  const apiCurrentUri = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=${units}`;
+  const apiForecastUri = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=${units}`;
+  axios.get(apiCurrentUri).then(displayTemperature);
+  axios.get(apiForecastUri).then(getForecast);
 }
 
 function showForecast(response) {
@@ -156,3 +158,4 @@ function getForecast(coordinates) {
 
 //setInterval(displayTemperature, 10000); //function displaytemp refresh data every 10s
 //https://api.shecodes.io/weather/v1/forecast?lat=38.71667&lon=-9.13333&key=242c3086ae8a4o123efeca4t0ba430f7&units=metric
+//https://relaxed-entremet-416ea9.netlify.app/#
