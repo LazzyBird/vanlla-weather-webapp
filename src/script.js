@@ -65,7 +65,7 @@ function displayTemperature(response) {
   cityName = response.data.name;
   if (units === "metric") {
     windspeedElement.innerHTML = Math.round(response.data.wind.speed);
-    speedUnit.innerHTML = "m/s";
+    speedUnit.innerHTML = "km/h";
   } else if (units === "imperial") {
     let mph = response.data.wind.speed;
     windspeedElement.innerHTML = Math.round(mph);
@@ -103,7 +103,7 @@ document
     }
   });
 
-metricSwitch.addEventListener("click", () => {
+/*metricSwitch.addEventListener("click", () => {
   // Set the units to metric and update the API request
   units = "metric";
   updateWeather(units, coordinates);
@@ -116,12 +116,12 @@ imperialSwitch.addEventListener("click", () => {
 });
 
 // Update the weather data using the new units
-function updateWeather(units) {
+ function updateWeather(units) {
   const apiCurrentUri = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=${units}`;
   const apiForecastUri = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=${units}`;
   axios.get(apiCurrentUri).then(displayTemperature);
   axios.get(apiForecastUri).then(getForecast);
-}
+} */
 
 function showForecast(response) {
   let forecast = null;
