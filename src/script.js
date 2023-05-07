@@ -21,7 +21,16 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
-let apiKey = "4085d4e1d22f7753a9278110dff3ae74";
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+let apiKey = "242c3086ae8a4o123efeca4t0ba430f7";
 let cityName = "Odesa"; //default city
 let units = "metric"; //default units
 //units switcher
@@ -41,18 +50,18 @@ function displayTemperature(response) {
   let lastUpdate = document.querySelector("#updated");
   let weatherIconElement = document.querySelector("#weatherIcon");
 
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
-  feelsElement.innerHTML = Math.round(response.data.main.feels_like);
-  cityElement.innerHTML = response.data.name;
-  humidityElement.innerHTML = response.data.main.humidity;
+  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  feelsElement.innerHTML = Math.round(response.data.temperature.feels_like);
+  cityElement.innerHTML = response.data.city;
+  humidityElement.innerHTML = response.data.temperature.humidity;
   windspeedElement.innerHTML = Math.round(response.data.wind.speed);
-  countryElement.innerHTML = response.data.sys.country;
-  weatherElement.innerHTML = response.data.weather[0].description;
-  pressureElement.innerHTML = response.data.main.pressure;
-  lastUpdate.innerHTML = formatDate(response.data.dt * 1000);
-  iconName = response.data.weather[0].icon;
-  let iconUri = `https://openweathermap.org/img/wn/${iconName}.png`;
-  weatherIconElement.src = iconUri;
+  countryElement.innerHTML = response.data.country;
+  weatherElement.innerHTML = response.data.condition.description;
+  pressureElement.innerHTML = response.data.temperature.pressure;
+  lastUpdate.innerHTML = formatDate(response.data.time * 1000);
+  //iconName = response.data.weather[0].icon;
+  //let iconUri = `https://openweathermap.org/img/wn/${iconName}.png`;
+  weatherIconElement.src = response.data.condition.icon_url;
   cityName = response.data.name;
   if (units === "metric") {
     windspeedElement.innerHTML = Math.round(response.data.wind.speed);
@@ -62,7 +71,7 @@ function displayTemperature(response) {
     windspeedElement.innerHTML = Math.round(mph);
     speedUnit.innerHTML = "mph";
   }
-  getCoordinates(response.data.coord);
+  getForecast(response.data.coordinates);
 }
 
 function inputCity(event) {
@@ -78,11 +87,10 @@ function inputCity(event) {
   cityName = cityNameInput; // update the city name with the user input
   city.innerHTML = cityName;
   cityInput.value = "";
-
-  let apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
+  let apiUri = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=${units}`;
   axios.get(apiUri).then(displayTemperature);
 }
-let apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
+let apiUri = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=${units}`;
 axios.get(apiUri).then(displayTemperature);
 
 document.getElementById("search-button").addEventListener("click", inputCity);
@@ -109,40 +117,42 @@ imperialSwitch.addEventListener("click", () => {
 
 // Update the weather data using the new units
 function updateWeather(units) {
-  const apiUri = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
+  const apiUri = `https://api.shecodes.io/weather/v1/current?query=${cityName}&key=${apiKey}&units=${units}`;
   axios.get(apiUri).then(displayTemperature);
 }
 
-function forecastPut() {
+function showForecast(response) {
+  let forecast = null;
+  console.log(response.data);
   let forecastElement = document.querySelector("#forecastRow");
   let forecastHtml = `<div class="row">`;
-  let weekDays = ["Sun", "Mon", "Tue", "Sat"];
-  weekDays.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      ` <div class="col-3 forecastCol">
-              <p>${day}</p>
+  for (let index = 1; index < 5; index++) {
+    forecast = response.data.daily[index];
+    forecastHtml += ` <div class="col-3 forecastCol">
+              <p>${formatDay(forecast.time)}</p>
               <div>
                 <img
                   class="weatherIconForecast"
-                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
+                  src= "${forecast.condition.icon_url}"
                   width="30px"
                 />
               </div>
-               <p><span id="maxTemp">18</span>° <span id="minTemp">12</span>°</p>
+               <p><span id="maxTemp">${Math.round(
+                 forecast.temperature.maximum
+               )}</span>° <span id="minTemp">${Math.round(
+      forecast.temperature.minimum
+    )}</span>°</p>
             </div>`;
-  });
+  }
   forecastHtml += `</div>`;
   forecastElement.innerHTML = forecastHtml;
 }
-function getCoordinates(coordinates) {
-  console.log(coordinates);
+
+function getForecast(coordinates) {
   let apiKey = "242c3086ae8a4o123efeca4t0ba430f7";
-  let apiUri = `https://api.shecodes.io/weather/v1/current?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}&units=${units}`;
-  console.log(apiUri);
-  axios.get(apiUri).then(forecastPut);
+  let apiUri = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=${units}`;
+  axios.get(apiUri).then(showForecast);
 }
-forecastPut();
 
 //setInterval(displayTemperature, 10000); //function displaytemp refresh data every 10s
-//https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}
+//https://api.shecodes.io/weather/v1/forecast?lat=38.71667&lon=-9.13333&key=242c3086ae8a4o123efeca4t0ba430f7&units=metric

@@ -3,9 +3,10 @@
   font-family: "Roboto", sans-serif;
   padding-top: 20px;
   margin: 40px auto;
-  max-width: 650px;
-  min-width: 400px;
+  max-width: 660px;
+  min-width: 480px;
   line-height: 1.2;
+  margin-bottom: 0px;
 }
 .weather-widget {
   border: 1px solid #ccc;
@@ -61,8 +62,8 @@ strong {
   opacity: 0.6;
 }
 .forecastCol {
-  margin: 0 auto;
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
